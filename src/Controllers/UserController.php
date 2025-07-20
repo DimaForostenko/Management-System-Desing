@@ -1,9 +1,9 @@
 <?php
 
-namespace src\Controllers;
+namespace Controllers;
 
-use src\Models\User;
-use src\Models\Department;
+use Models\User;
+use Models\Department;
 
 class UserController extends BaseController
 {

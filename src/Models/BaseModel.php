@@ -1,8 +1,8 @@
 <?php
 
-namespace src\Models;
+namespace Models;
 
-use src\Database\Database;
+use Database\Database;
 
 abstract class BaseModel
 {

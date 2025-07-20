@@ -1,8 +1,8 @@
 <?php
 
-namespace src\Controllers;
+namespace Controllers;
 
-use src\Models\Department;
+use Models\Department;
 
 class DepartmentController extends BaseController
 {

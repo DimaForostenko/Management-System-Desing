@@ -1,21 +1,75 @@
 <?php
 
-namespace src\Controllers;
+namespace Controllers;
 
 abstract class BaseController
 {
+    protected string $layout = 'layouts/main';
     protected function view(string $view, array $data = []): void
     {
+
+        $data['flashMessage'] = $this->getFlashMessage();
         // Извлекаем переменные из массива данных
         extract($data);
         
         // Подключаем шаблон
-        $viewPath = __DIR__ . "/../Views/{$view}.php";
+        $viewPath = __DIR__ . '/../../views/' . $view . '.php';
         
         if (file_exists($viewPath)) {
-            require_once $viewPath;
+            // Начинаем буферизацию для захвата контента страницы
+            ob_start();
+            require $viewPath;
+            echo "<script>console.log(" . json_encode($viewPath) . ");</script>"; 
+            // Получаем контент страницы
+            $content = ob_get_clean();
+            
+            // Подключаем макет
+            $this->loadLayout($content, $data);
         } else {
+            
             throw new \Exception("View {$view} not found");
+        }
+    }
+
+     /**
+     * Загружает макет с контентом
+     */
+    protected function loadLayout(string $content, array $data = []): void
+    {
+        // Извлекаем переменные для макета
+        extract($data);
+        
+        // Подключаем макет
+        $layoutPath = __DIR__ . '/../../views/' . $this->layout . '.php';
+        
+        if (file_exists($layoutPath)) {
+            require $layoutPath;
+        } else {
+            throw new \Exception("Layout {$this->layout} not found at path: {$layoutPath}");
+        }
+    }
+    
+    /**
+     * Установка пользовательского макета
+     */
+    protected function setLayout(string $layout): void
+    {
+        $this->layout = $layout;
+    }
+    
+    /**
+     * Рендеринг представления без макета (для AJAX)
+     */
+    protected function renderView(string $view, array $data = []): void
+    {
+        extract($data);
+        
+        $viewPath = __DIR__ . '/../../views/' . $view . '.php';
+        
+        if (file_exists($viewPath)) {
+            require $viewPath;
+        } else {
+            throw new \Exception("View {$view} not found at path: {$viewPath}");
         }
     }
 

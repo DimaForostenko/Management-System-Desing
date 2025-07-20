@@ -1,13 +1,25 @@
 <?php
+spl_autoload_register(function ($class) {
+    // Преобразуем namespace в путь к файлу
+    $file = __DIR__ . '/../src/' . str_replace('\\', '/', $class) . '.php';
+    
+    // Проверяем существование файла и подключаем его
+    if (file_exists($file)) {
+        require_once $file;
+        return true;
+    }else {
+    echo "Файл не найден: $file";}
+    
+    echo "<script>console.log(" . json_encode($file) . ");</script>"; ;
+    echo "<script>console.log(" . json_encode($class) . ");</script>";;
+});
+// Подключаем автозагрузчик
+#require_once __DIR__ . './../autoloader.php';
 
-session_start();
-
-require_once __DIR__ . '/../src/autoload.php';
-
-use src\Router\Router;
-use src\Controllers\HomeController;
-use src\Controllers\UserController;
-use src\Controllers\DepartmentController;
+use Routers\Router;
+use Controllers\HomeController;
+use Controllers\UserController;
+use Controllers\DepartmentController;
 
 // Создаем роутер
 $router = new Router();
@@ -60,7 +72,7 @@ $router->get('/departments', function() {
     $controller->index();
 });
 
-$router->post('/departments/add', function() {
+$router->post('/departments/create', function() {
     $controller = new DepartmentController();
     $controller->store();
 });

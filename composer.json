@@ -1,0 +1,27 @@
+{
+    "name": "dmytro/management",
+    "description": "managment",
+    "type": "project",
+    "require": {
+        "php": "^8.5",
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+       "psr-4": {
+        "Database\\": "src/Database/",
+        "Routers\\": "src/Routers/",
+        "Controllers\\": "src/Controllers/",
+        "Models\\": "src/Models/"
+    }
+    },
+    "authors": [
+        {
+            "name": "dmytro"
+        }
+    ], 
+     "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}
