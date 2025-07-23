@@ -6,8 +6,7 @@ return [
     'app' => [
         'name' => 'Manageemnt System Desing',
         'version' => '1.0.0',
-        'timezone' => 'Europe/Dublin',
-        'debug' => $_ENV['APP_DEBUG'] ?? false,
+        'timezone' => 'Europe/Kiev',
     ],
     'session' => [
         'name' => 'user_management_session',

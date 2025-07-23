@@ -1,10 +1,6 @@
 <?php
 session_start();
-
-// Включаем отображение ошибок для отладки (уберите в продакшене)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
+// Подключаем автозагрузчик
 spl_autoload_register(function ($class) {
     // Преобразуем namespace в путь к файлу
     $file = __DIR__ . '/../src/' . str_replace('\\', '/', $class) . '.php';
@@ -21,8 +17,9 @@ spl_autoload_register(function ($class) {
     echo "Файл не найден: $file";}
     return false;
 });
-// Подключаем автозагрузчик
-#require_once __DIR__ . './../autoloader.php';
+// Установка временной зоны (измените на вашу)
+date_default_timezone_set('Europe/Kiev');
+
 
 use Routers\Router;
 use Controllers\HomeController;
