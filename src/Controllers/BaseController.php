@@ -152,7 +152,7 @@ abstract class BaseController
         
         foreach ($required as $field) {
             if (empty($data[$field])) {
-                $errors[$field] = "Поле {$field} обязательно для заполнения";
+                $errors[$field] = "Поле {$field} обов'язкове  для заповнення";
             }
         }
         

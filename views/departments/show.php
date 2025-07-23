@@ -3,10 +3,10 @@
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
             <a href="/departments/<?= $department['id'] ?>/edit" class="btn btn-sm btn-outline-warning">
-                <i class="bi bi-pencil"></i> Редактировать
+                <i class="bi bi-pencil"></i> Редагувати
             </a>
             <a href="/departments" class="btn btn-sm btn-outline-secondary">
-                <i class="bi bi-arrow-left"></i> Назад к списку
+                <i class="bi bi-arrow-left"></i> Назад до списку
             </a>
         </div>
     </div>
@@ -16,7 +16,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Информация об отделе</h5>
+                <h5 class="card-title">Информація про департамент</h5>
             </div>
             <div class="card-body">
                 <table class="table table-borderless">
@@ -25,19 +25,19 @@
                         <td><?= $department['id'] ?></td>
                     </tr>
                     <tr>
-                        <td><strong>Название:</strong></td>
+                        <td><strong>Назва:</strong></td>
                         <td><?= htmlspecialchars($department['name']) ?></td>
                     </tr>
                     <tr>
-                        <td><strong>Описание:</strong></td>
-                        <td><?= htmlspecialchars($department['description'] ?? 'Не указано') ?></td>
+                        <td><strong>Опис:</strong></td>
+                        <td><?= htmlspecialchars($department['description'] ?? 'Не вказано') ?></td>
                     </tr>
                     <tr>
-                        <td><strong>Дата создания:</strong></td>
+                        <td><strong>Дата створення:</strong></td>
                         <td><?= date('d.m.Y H:i', strtotime($department['created_at'])) ?></td>
                     </tr>
                     <tr>
-                        <td><strong>Дата обновления:</strong></td>
+                        <td><strong>Дата оновлення:</strong></td>
                         <td><?= date('d.m.Y H:i', strtotime($department['updated_at'])) ?></td>
                     </tr>
                 </table>
@@ -48,7 +48,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Пользователи отдела</h5>
+                <h5 class="card-title">Користувачі департаменту</h5>
                  <span class="badge bg-info"><?= $usersCount ?> чел.</span>
             </div>
             <div class="card-body">
@@ -57,10 +57,10 @@
                         <table class="table table-sm">
                             <thead>
                                 <tr>
-                                    <th>Имя</th>
+                                    <th>Ім'я</th>
                                     <th>Email</th>
                                     <th>Статус</th>
-                                    <th>Действия</th>
+                                    <th>Дії</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,21 +68,21 @@
                                     <tr>
                                         <td><?= htmlspecialchars($user['name']) ?></td>
                                         <td><?= htmlspecialchars($user['email']) ?></td>
-                                        <td><?= htmlspecialchars($user['position'] ?? 'Не указана') ?></td>
+                                        <td><?= htmlspecialchars($user['position'] ?? 'Не вказано') ?></td>
                                         <td>
                                             <span class="badge <?= $user['is_active'] ? 'bg-success' : 'bg-danger' ?>">
-                                                <?= $user['is_active'] ? 'Активный' : 'Неактивный' ?>
+                                                <?= $user['is_active'] ? 'Активний' : 'Неактивний' ?>
                                             </span>
                                         </td>
                                    <td>
                                             <a href="/users/<?= $user['id'] ?>" 
                                                class="btn btn-sm btn-outline-info"
-                                               title="Просмотр">
+                                               title="Огляд">
                                                 <i class="bi bi-eye"></i>
                                             </a>
                                             <a href="/users/<?= $user['id'] ?>/edit" 
                                                class="btn btn-sm btn-outline-warning"
-                                               title="Редактировать">
+                                               title="Редагувати">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
                                         </td>
@@ -94,9 +94,9 @@
                 <?php else: ?>
                         <div class="text-center py-4">
                         <i class="bi bi-people display-4 text-muted"></i>
-                        <p class="text-muted mt-2">В этом отделе пока нет пользователей.</p>
+                        <p class="text-muted mt-2">В цього департаменті не має співробітників.</p>
                         <a href="/users/add" class="btn btn-primary btn-sm">
-                            <i class="bi bi-plus"></i> Добавить пользователя
+                            <i class="bi bi-plus"></i> Додати користувача
                         </a>
                     </div>
                 <?php endif; ?>

@@ -1,8 +1,8 @@
 <!-- Заголовок страницы -->
 <div class="row mb-4">
     <div class="col-12">
-        <h1 class="display-4">Добро пожаловать в Employee Management System</h1>
-        <p class="lead">Система управления сотрудниками и департаментами</p>
+        <h1 class="display-4">Ласкаво просимо до Employee Management System</h1>
+        <p class="lead">Система управління співробітниками та департаментами</p>
     </div>
 </div>
 
@@ -13,14 +13,14 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h5 class="card-title">Департаменты</h5>
+                        <h5 class="card-title">Департаментами</h5>
                         <h2 class="card-text"><?php echo $totalDepartments ?? 0; ?></h2>
                     </div>
                     <div class="align-self-center">
                         <i class="fas fa-building fa-2x"></i>
                     </div>
                 </div>
-                <a href="/departments" class="btn btn-light mt-2">Управление департаментами</a>
+                <a href="/departments" class="btn btn-light mt-2">Управління департаментами</a>
             </div>
         </div>
     </div>
@@ -30,14 +30,14 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h5 class="card-title">Сотрудники</h5>
+                        <h5 class="card-title">Співробітники</h5>
                         <h2 class="card-text"><?php echo $totalUsers ?? 0; ?></h2>
                     </div>
                     <div class="align-self-center">
                         <i class="fas fa-users fa-2x"></i>
                     </div>
                 </div>
-                <a href="/users" class="btn btn-light mt-2">Управление сотрудниками</a>
+                <a href="/users" class="btn btn-light mt-2">Управління співробітниками</a>
             </div>
         </div>
     </div>
@@ -48,8 +48,8 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Последние департаменты</h5>
-                <a href="/departments" class="btn btn-sm btn-outline-primary">Все департаменты</a>
+                <h5 class="mb-0">Останні департаменти</h5>
+                <a href="/departments" class="btn btn-sm btn-outline-primary">Усі департаменти</a>
             </div>
             <div class="card-body">
                 <?php if (!empty($recentDepartments)): ?>
@@ -65,7 +65,7 @@
                         <?php endforeach; ?>
                     </div>
                 <?php else: ?>
-                    <p class="text-muted">Департаменты не найдены</p>
+                    <p class="text-muted">Департаментів не знайдено</p>
                 <?php endif; ?>
             </div>
         </div>
@@ -75,8 +75,8 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Последние сотрудники</h5>
-                <a href="/users" class="btn btn-sm btn-outline-success">Все сотрудники</a>
+                <h5 class="mb-0">Останні співробітники</h5>
+                <a href="/users" class="btn btn-sm btn-outline-success">Усі співробітники</a>
             </div>
             <div class="card-body">
                 <?php if (!empty($recentUsers)): ?>
@@ -92,7 +92,7 @@
                         <?php endforeach; ?>
                     </div>
                 <?php else: ?>
-                    <p class="text-muted">Сотрудники не найдены</p>
+                    <p class="text-muted">Співробітників не знайдено</p>
                 <?php endif; ?>
             </div>
         </div>
@@ -104,28 +104,28 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="mb-0">Быстрые действия</h5>
+                <h5 class="mb-0">Швидкі дії</h5>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3 mb-2">
                         <a href="/departments/create" class="btn btn-primary w-100">
-                            <i class="fas fa-plus"></i> Добавить департамент
+                            <i class="fas fa-plus"></i> Додати департамент
                         </a>
                     </div>
                     <div class="col-md-3 mb-2">
                         <a href="/users/create" class="btn btn-success w-100">
-                            <i class="fas fa-user-plus"></i> Добавить сотрудника
+                            <i class="fas fa-user-plus"></i> Додати співробітника
                         </a>
                     </div>
                     <div class="col-md-3 mb-2">
                         <a href="/departments" class="btn btn-info w-100">
-                            <i class="fas fa-list"></i> Список департаментов
+                            <i class="fas fa-list"></i> Список департаментів
                         </a>
                     </div>
                     <div class="col-md-3 mb-2">
                         <a href="/users" class="btn btn-warning w-100">
-                            <i class="fas fa-users"></i> Список сотрудников
+                            <i class="fas fa-users"></i> Список співробітників
                         </a>
                     </div>
                 </div>

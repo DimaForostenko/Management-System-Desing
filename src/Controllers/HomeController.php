@@ -21,7 +21,7 @@ class HomeController extends BaseController
         
         // Подготавливаем данные для передачи в представление
         $data = [
-            'title' => 'Главная страница',
+            'title' => 'Головна сторінка',
             'totalUsers' => $totalUsers,
             'totalDepartments' => $totalDepartments,
             'recentUsers' => $recentUsers,

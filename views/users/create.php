@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Создать пользователя</h1>
+    <h1 class="h2">Створити користувача</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
             <a href="/users" class="btn btn-sm btn-outline-secondary">
-                <i class="bi bi-arrow-left"></i> Назад к списку
+                <i class="bi bi-arrow-left"></i> Назад до списку
             </a>
         </div>
     </div>
@@ -15,7 +15,7 @@
             <div class="card-body">
                 <form method="POST" action="/users/create">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Имя *</label>
+                        <label for="name" class="form-label">Ім'я *</label>
                         <input type="text" class="form-control <?= isset($errors['name']) ? 'is-invalid' : '' ?>" 
                                id="name" name="name" value="<?= htmlspecialchars($old['name'] ?? '') ?>" required>
                         <?php if (isset($errors['name'])): ?>
@@ -33,10 +33,10 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="department_id" class="form-label">Отдел</label>
+                        <label for="department_id" class="form-label">Департамент</label>
                         <select class="form-select <?= isset($errors['department_id']) ? 'is-invalid' : '' ?>" 
                                 id="department_id" name="department_id">
-                            <option value="">Выберите отдел</option>
+                            <option value="">Виберіть департамент</option>
                             <?php foreach ($departments as $dept): ?>
                                 <option value="<?= $dept['id'] ?>" 
                                         <?= ($old['department_id'] ?? '') == $dept['id'] ? 'selected' : '' ?>>
@@ -59,7 +59,7 @@
 </div>
 
 <div class="mb-3">
-    <label for="position" class="form-label">Должность</label>
+    <label for="position" class="form-label">Посада</label>
     <input type="text" class="form-control <?= isset($errors['position']) ? 'is-invalid' : '' ?>"
            id="position" name="position" value="<?= htmlspecialchars($old['position'] ?? '') ?>"
            placeholder="Введите должность" maxlength="100">
@@ -69,7 +69,7 @@
 </div>
 
 <div class="mb-3">
-    <label for="address" class="form-label">Адрес</label>
+    <label for="address" class="form-label">Адреса</label>
     <textarea class="form-control <?= isset($errors['address']) ? 'is-invalid' : '' ?>"
               id="address" name="address" rows="3" maxlength="1000"
               placeholder="Введите адрес"><?= htmlspecialchars($old['address'] ?? '') ?></textarea>
@@ -82,17 +82,17 @@
                             <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" 
                                    <?= ($old['is_active'] ?? '1') ? 'checked' : '' ?>>
                             <label class="form-check-label" for="is_active">
-                                Активный пользователь
+                                Активний користувач
                             </label>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-save"></i> Создать пользователя
+                            <i class="bi bi-save"></i> Створити користувача
                         </button>
                         <a href="/users" class="btn btn-secondary">
-                            <i class="bi bi-x-circle"></i> Отмена
+                            <i class="bi bi-x-circle"></i> Відміна
                         </a>
                     </div>
                 </form>

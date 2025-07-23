@@ -46,7 +46,7 @@ class UserController extends BaseController
     // $users = $this->userModel->getAllWithDepartments();
     
     $data = [
-        'title' => 'Все пользователи',
+        'title' => 'Всі користувачі',
         'users' => $users,
         'departments' => $departments,
         'flashMessage' => $this->getFlashMessage()
@@ -62,7 +62,7 @@ class UserController extends BaseController
         $departments = $this->departmentModel->getAllForSelect();
         
         $data = [
-            'title' => 'Добавить пользователя',
+            'title' => 'Додати користувача',
             'departments' => $departments,
             'flashMessage' => $this->getFlashMessage(),
             'errors' => $this->getValidationErrors(),
@@ -87,9 +87,9 @@ class UserController extends BaseController
         if (empty($errors)) {
             try {
                 $userId = $this->userModel->create($postData);
-                $this->redirectWithMessage('/users/index', 'Пользователь успешно создан', 'success');
+                $this->redirectWithMessage('/users/index', 'Користувач успішно створено', 'success');
             } catch (\Exception $e) {
-                $this->redirectWithMessage('/users/create', 'Ошибка при создании пользователя: ' . $e->getMessage(), 'error');
+                $this->redirectWithMessage('/users/create', 'Помилка при створенні користувача: ' . $e->getMessage(), 'error');
             }
         } else {
             // Сохраняем ошибки в сессию для отображения
@@ -104,7 +104,7 @@ class UserController extends BaseController
         $user = $this->userModel->getWithDepartment($id);
         
         if (!$user) {
-            $this->redirectWithMessage('/users', 'Пользователь не найден', 'error');
+            $this->redirectWithMessage('/users', 'Користувач не знайдено', 'error');
             return;
         }
         
@@ -122,7 +122,7 @@ class UserController extends BaseController
         $user = $this->userModel->find($id);
         
         if (!$user) {
-            $this->redirectWithMessage('/users', 'Пользователь не найден', 'error');
+            $this->redirectWithMessage('/users', 'Користувач не знайдено', 'error');
             return;
         }
         
@@ -150,7 +150,7 @@ class UserController extends BaseController
         $user = $this->userModel->find($id);
         
         if (!$user) {
-            $this->redirectWithMessage('/users', 'Пользователь не найден', 'error');
+            $this->redirectWithMessage('/users', 'Користувач не знайдено', 'error');
             return;
         }
 
@@ -162,9 +162,9 @@ class UserController extends BaseController
         if (empty($errors)) {
             try {
                 $this->userModel->update($id, $postData);
-                $this->redirectWithMessage('/users', 'Пользователь успешно обновлен', 'success');
+                $this->redirectWithMessage('/users', 'Користувач успішно створено', 'success');
             } catch (\Exception $e) {
-                $this->redirectWithMessage("/users/{$id}/edit", 'Ошибка при обновлении пользователя: ' . $e->getMessage(), 'error');
+                $this->redirectWithMessage("/users/{$id}/edit", 'Помилка при створенні користувача:' . $e->getMessage(), 'error');
             }
         } else {
             // Сохраняем ошибки в сессию для отображения
@@ -184,15 +184,15 @@ class UserController extends BaseController
         $user = $this->userModel->find($id);
         
         if (!$user) {
-            $this->redirectWithMessage('/users', 'Пользователь не найден', 'error');
+            $this->redirectWithMessage('/users', 'Користувач не знайдено', 'error');
             return;
         }
 
         try {
             $this->userModel->delete($id);
-            $this->redirectWithMessage('/users', 'Пользователь успешно удален', 'success');
+            $this->redirectWithMessage('/users', 'Користувач успішно створено', 'success');
         } catch (\Exception $e) {
-            $this->redirectWithMessage('/users', 'Ошибка при удалении пользователя: ' . $e->getMessage(), 'error');
+            $this->redirectWithMessage('/users', 'Помилка при створенні користувача: ' . $e->getMessage(), 'error');
         }
     }
 

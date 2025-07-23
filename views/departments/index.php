@@ -1,10 +1,10 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Отделы</h1>
+    <h1 class="h2">Департаменти</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
             <a href="/departments/create" class="btn btn-sm btn-outline-secondary">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-                <i class="bi bi-plus-circle"></i> Добавить отдел
+                <i class="bi bi-plus-circle"></i> Додати департамент
             </a>
         </div>
     </div>
@@ -16,12 +16,12 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Название</th>
-                    <th>Описание</th>
-                    <th>Количество сотрудников</th>
-                    <th>Дата создания</th>
-                    <th>Дата обновления</th>
-                    <th>Действия</th>
+                    <th>Назва</th>
+                    <th>Опис</th>
+                    <th>Кількість співробітників</th>
+                    <th>Дата створення</th>
+                    <th>Дата оновлення</th>
+                    <th>Дії</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,12 +45,12 @@
                             <div class="btn-group" role="group">
                                 <a href="/departments/<?= $department['id'] ?>"
                                    class="btn btn-sm btn-outline-info"
-                                   title="Просмотр">
+                                   title="Огляд">
                                     <i class="bi bi-eye"></i>
                                 </a>
                                 <a href="/departments/<?= $department['id'] ?>/edit"
                                    class="btn btn-sm btn-outline-warning"
-                                   title="Редактировать">
+                                   title="Редагувати">
                                     <i class="bi bi-pencil"></i>
                                 </a>
                                 <?php if ((int)$department['users_count'] === 0): ?>
@@ -59,14 +59,14 @@
                                           onsubmit="return confirm('Вы уверены, что хотите удалить этот отдел?')">
                                         <button type="submit" 
                                                 class="btn btn-sm btn-outline-danger"
-                                                title="Удалить">
+                                                title="Видалити">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
                                 <?php else: ?>
                                     <button type="button" 
                                             class="btn btn-sm btn-outline-danger disabled"
-                                            title="Нельзя удалить отдел с сотрудниками"
+                                            title="Не можна видалити департамент зі співробітниками"
                                             disabled>
                                         <i class="bi bi-trash"></i>
                                     </button>
@@ -81,13 +81,13 @@
     
     <div class="mt-3">
         <small class="text-muted">
-            Всего отделов: <?= count($departments) ?>
+            Всього департаментів: <?= count($departments) ?>
         </small>
     </div>
     
 <?php else: ?>
     <div class="alert alert-info">
-        <i class="bi bi-info-circle"></i> Отделов пока нет.
-        <a href="/departments/create" class="alert-link">Создайте первый отдел</a>.
+        <i class="bi bi-info-circle"></i> Департаментів поки що не має
+        <a href="/departments/create" class="alert-link">Створити перший департамент</a>.
     </div>
 <?php endif; ?>

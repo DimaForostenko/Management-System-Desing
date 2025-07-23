@@ -1,10 +1,10 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Пользователи</h1>
+    <h1 class="h2">Користувачі</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
             <a href="/users/create" class="btn btn-sm btn-outline-secondary">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-                <i class="bi bi-plus-circle"></i> Добавить пользователя
+                <i class="bi bi-plus-circle"></i> Додати користувача
             </a>
         </div>
     </div>
@@ -16,13 +16,13 @@
             <div class="card-body">
                 <form method="GET" class="row g-3">
                     <div class="col-md-3">
-                        <label for="search" class="form-label">Поиск</label>
+                        <label for="search" class="form-label">Пошук</label>
                         <input type="text" class="form-control" id="search" name="search" 
                                value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" 
                                placeholder="Имя или email">
                     </div>
                     <div class="col-md-2">
-                        <label for="department" class="form-label">Отдел</label>
+                        <label for="department" class="form-label">Департамент</label>
                         <select class="form-select" id="department" name="department">
                             <option value="">Все отделы</option>
                             <?php foreach ($departments as $dept): ?>
@@ -37,31 +37,31 @@
                         <label for="status" class="form-label">Статус</label>
                         <select class="form-select" id="status" name="status">
                             <option value="">Все</option>
-                            <option value="1" <?= ($_GET['status'] ?? '') === '1' ? 'selected' : '' ?>>Активные</option>
-                            <option value="0" <?= ($_GET['status'] ?? '') === '0' ? 'selected' : '' ?>>Неактивные</option>
+                            <option value="1" <?= ($_GET['status'] ?? '') === '1' ? 'selected' : '' ?>>Активні</option>
+                            <option value="0" <?= ($_GET['status'] ?? '') === '0' ? 'selected' : '' ?>>Неактивні</option>
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <label for="sort" class="form-label">Сортировка</label>
+                        <label for="sort" class="form-label">Сортування</label>
                         <select class="form-select" id="sort" name="sort">
-                            <option value="created_at_desc" <?= ($_GET['sort'] ?? 'created_at_desc') === 'created_at_desc' ? 'selected' : '' ?>>Дата создания ↓</option>
-                            <option value="created_at_asc" <?= ($_GET['sort'] ?? '') === 'created_at_asc' ? 'selected' : '' ?>>Дата создания ↑</option>
-                            <option value="name_asc" <?= ($_GET['sort'] ?? '') === 'name_asc' ? 'selected' : '' ?>>Имя А-Я</option>
-                            <option value="name_desc" <?= ($_GET['sort'] ?? '') === 'name_desc' ? 'selected' : '' ?>>Имя Я-А</option>
+                            <option value="created_at_desc" <?= ($_GET['sort'] ?? 'created_at_desc') === 'created_at_desc' ? 'selected' : '' ?>>Дата створення ↓</option>
+                            <option value="created_at_asc" <?= ($_GET['sort'] ?? '') === 'created_at_asc' ? 'selected' : '' ?>>Дата створення ↑</option>
+                            <option value="name_asc" <?= ($_GET['sort'] ?? '') === 'name_asc' ? 'selected' : '' ?>>Ім'я А-Я</option>
+                            <option value="name_desc" <?= ($_GET['sort'] ?? '') === 'name_desc' ? 'selected' : '' ?>>Им'я Я-А</option>
                             <option value="email_asc" <?= ($_GET['sort'] ?? '') === 'email_asc' ? 'selected' : '' ?>>Email А-Я</option>
                             <option value="email_desc" <?= ($_GET['sort'] ?? '') === 'email_desc' ? 'selected' : '' ?>>Email Я-А</option>
-                            <option value="department_asc" <?= ($_GET['sort'] ?? '') === 'department_asc' ? 'selected' : '' ?>>Отдел А-Я</option>
-                            <option value="department_desc" <?= ($_GET['sort'] ?? '') === 'department_desc' ? 'selected' : '' ?>>Отдел Я-А</option>
+                            <option value="department_asc" <?= ($_GET['sort'] ?? '') === 'department_asc' ? 'selected' : '' ?>>Департамент А-Я</option>
+                            <option value="department_desc" <?= ($_GET['sort'] ?? '') === 'department_desc' ? 'selected' : '' ?>>Департамент Я-А</option>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">&nbsp;</label>
                         <div class="d-grid gap-2 d-md-flex">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-search"></i> Фильтр
+                                <i class="bi bi-search"></i> Фільтр
                             </button>
                             <a href="/users" class="btn btn-outline-secondary">
-                                <i class="bi bi-x-circle"></i> Сбросить
+                                <i class="bi bi-x-circle"></i> Скинути
                             </a>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                     <th>
                         <a href="?<?= http_build_query(array_merge($_GET, ['sort' => ($_GET['sort'] ?? '') === 'created_at_asc' ? 'created_at_desc' : 'created_at_asc'])) ?>" 
                            class="text-decoration-none text-dark">
-                            Дата создания 
+                            Дата створення 
                             <?php if (($_GET['sort'] ?? 'created_at_desc') === 'created_at_asc'): ?>
                                 <i class="bi bi-arrow-up"></i>
                             <?php elseif (($_GET['sort'] ?? 'created_at_desc') === 'created_at_desc'): ?>
@@ -135,7 +135,7 @@
                     <th>
                         <a href="?<?= http_build_query(array_merge($_GET, ['sort' => ($_GET['sort'] ?? '') === 'updated_at_asc' ? 'updated_at_desc' : 'updated_at_asc'])) ?>" 
                            class="text-decoration-none text-dark">
-                            Дата обновления 
+                            Дата оновлення
                             <?php if (($_GET['sort'] ?? '') === 'updated_at_asc'): ?>
                                 <i class="bi bi-arrow-up"></i>
                             <?php elseif (($_GET['sort'] ?? '') === 'updated_at_desc'): ?>
@@ -143,7 +143,7 @@
                             <?php endif; ?>
                         </a>
                     </th>
-                    <th>Действия</th>
+                    <th>Дії</th>
                 </tr>
             </thead>
             <tbody>
@@ -155,7 +155,7 @@
                         <td><?= htmlspecialchars($user['department_name'] ?? 'Не указан') ?></td>
                         <td>
                             <span class="badge <?= $user['is_active'] ? 'bg-success' : 'bg-danger' ?>">
-                                <?= $user['is_active'] ? 'Активный' : 'Неактивный' ?>
+                                <?= $user['is_active'] ? 'Активний' : 'Неактивний' ?>
                             </span>
                         </td>
                         <td><?= date('d.m.Y H:i', strtotime($user['created_at'])) ?></td>
@@ -172,7 +172,7 @@
                                 </a>
                                 <form method="POST" action="/users/<?= $user['id'] ?>/delete" 
                                       style="display: inline;" 
-                                      onsubmit="return confirm('Вы уверены, что хотите удалить этого пользователя?')">
+                                      onsubmit="return confirm('Ви впевнені, що хочете видалити цього користувача?')">
                                     <button type="submit" class="btn btn-sm btn-outline-danger">
                                         <i class="bi bi-trash"></i>
                                     </button>
@@ -186,7 +186,7 @@
     </div>
 <?php else: ?>
     <div class="alert alert-info">
-        <i class="bi bi-info-circle"></i> Пользователей не найдено. 
-        <a href="/users/create" class="alert-link">Создайте первого пользователя</a>.
+        <i class="bi bi-info-circle"></i> Користувачів не знайдено 
+        <a href="/users/create" class="alert-link">Створіть першого користувача</a>.
     </div>
 <?php endif; ?>

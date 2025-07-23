@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ua">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
     <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">Employee Management</a>
+            <a class="navbar-brand" href="/">Employee Management System</a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -40,13 +40,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link <?php echo ($currentPage ?? '') === 'home' ? 'active' : ''; ?>" href="/">Главная</a>
+                        <a class="nav-link <?php echo ($currentPage ?? '') === 'home' ? 'active' : ''; ?>" href="/">Головна</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo ($currentPage ?? '') === 'departments' ? 'active' : ''; ?>" href="/departments">Департаменты</a>
+                        <a class="nav-link <?php echo ($currentPage ?? '') === 'departments' ? 'active' : ''; ?>" href="/departments">Департаменти</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo ($currentPage ?? '') === 'users' ? 'active' : ''; ?>" href="/users">Сотрудники</a>
+                        <a class="nav-link <?php echo ($currentPage ?? '') === 'users' ? 'active' : ''; ?>" href="/users">Співробітники</a>
                     </li>
                 </ul>
             </div>
@@ -88,10 +88,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>&copy; <?php echo date('Y'); ?> Employee Management System. Все права защищены.</p>
+                    <p>&copy; <?php echo date('Y'); ?> Employee Management System. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-end">
-                    <p>Версия 1.0</p>
+                    <p>Version 1.0</p>
                 </div>
             </div>
         </div>

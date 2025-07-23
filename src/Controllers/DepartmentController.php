@@ -36,7 +36,7 @@ class DepartmentController extends BaseController
             $this->view('departments/index', $data);
         } catch (\Exception $e) {
             error_log("Error loading departments: " . $e->getMessage());
-            $this->redirectWithMessage('/dashboard', 'Ошибка при загрузке отделов', 'error');
+            $this->redirectWithMessage('/dashboard', 'Помилка під час завантаження відділів', 'error');
         }
     }
 
@@ -45,7 +45,7 @@ class DepartmentController extends BaseController
     public function create(): void
     {
         $data = [
-            'title' => 'Добавить отдел',
+            'title' => 'Додати департаменти',
             'flashMessage' => $this->getFlashMessage(),
             'errors' => $this->getValidationErrors(),
             'oldInput' => $this->getOldInput()
@@ -69,9 +69,9 @@ class DepartmentController extends BaseController
         if (empty($errors)) {
             try {
                 $this->departmentModel->create($postData);
-                $this->redirectWithMessage('/departments', 'Отдел успешно создан', 'success');
+                $this->redirectWithMessage('/departments', 'Департамент успішно створено', 'success');
             } catch (\Exception $e) {
-                $this->redirectWithMessage('/departments/create', 'Ошибка при создании отдела: ' . $e->getMessage(), 'error');
+                $this->redirectWithMessage('/departments/create', 'Помилка під час створення департаменту: ' . $e->getMessage(), 'error');
             }
         } else {
             // Сохраняем ошибки в сессию для отображения
@@ -86,7 +86,7 @@ class DepartmentController extends BaseController
         $department = $this->departmentModel->find($id);
         
         if (!$department) {
-            $this->redirectWithMessage('/departments', 'Отдел не найден', 'error');
+            $this->redirectWithMessage('/departments', 'Департамент не знайдено', 'error');
             return;
         }
         
@@ -97,7 +97,7 @@ class DepartmentController extends BaseController
         error_log("Department ID: $id, Users found: " . count($users));
         
         $data = [
-            'title' => 'Информация об отделе',
+            'title' => 'Інформація про департамент',
             'department' => $department,
             'users' => $users,
             'usersCount' => count($users),
@@ -112,12 +112,12 @@ class DepartmentController extends BaseController
         $department = $this->departmentModel->find($id);
         
         if (!$department) {
-            $this->redirectWithMessage('/departments', 'Отдел не найден', 'error');
+            $this->redirectWithMessage('/departments', 'Департамент не знайдено', 'error');
             return;
         }
         
         $data = [
-            'title' => 'Редактировать отдел',
+            'title' => 'Редагувати департамент',
             'department' => $department,
             'flashMessage' => $this->getFlashMessage(),
             'errors' => $this->getValidationErrors(),
@@ -137,7 +137,7 @@ class DepartmentController extends BaseController
         $department = $this->departmentModel->find($id);
         
         if (!$department) {
-            $this->redirectWithMessage('/departments', 'Отдел не найден', 'error');
+            $this->redirectWithMessage('/departments', 'Департамент не знайдено', 'error');
             return;
         }
 
@@ -147,9 +147,9 @@ class DepartmentController extends BaseController
         if (empty($errors)) {
             try {
                 $this->departmentModel->update($id, $postData);
-                $this->redirectWithMessage('/departments', 'Отдел успешно обновлен', 'success');
+                $this->redirectWithMessage('/departments', 'Департамент оновлено', 'success');
             } catch (\Exception $e) {
-                $this->redirectWithMessage("/departments/{$id}/edit", 'Ошибка при обновлении отдела: ' . $e->getMessage(), 'error');
+                $this->redirectWithMessage("/departments/{$id}/edit", 'Помилка при оновлені департаменту ' . $e->getMessage(), 'error');
             }
         } else {
             $_SESSION['validation_errors'] = $errors;
@@ -168,21 +168,21 @@ class DepartmentController extends BaseController
         $department = $this->departmentModel->find($id);
         
         if (!$department) {
-            $this->redirectWithMessage('/departments', 'Отдел не найден', 'error');
+            $this->redirectWithMessage('/departments', 'Департамент не знайдено', 'error');
             return;
         }
 
         // Проверяем, можно ли удалить отдел (нет связанных пользователей)
         if (!$this->departmentModel->canDelete($id)) {
-            $this->redirectWithMessage('/departments', 'Нельзя удалить отдел, в котором есть сотрудники', 'error');
+            $this->redirectWithMessage('/departments', 'Не можна видалити департамент зі співробітниками', 'error');
             return;
         }
 
         try {
             $this->departmentModel->delete($id);
-            $this->redirectWithMessage('/departments', 'Отдел успешно удален', 'success');
+            $this->redirectWithMessage('/departments', 'Департамент видалено', 'success');
         } catch (\Exception $e) {
-            $this->redirectWithMessage('/departments', 'Ошибка при удалении отдела: ' . $e->getMessage(), 'error');
+            $this->redirectWithMessage('/departments', 'Помилка при видалені департаменту ' . $e->getMessage(), 'error');
         }
     }
 
