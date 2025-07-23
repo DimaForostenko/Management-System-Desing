@@ -13,7 +13,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="/users">
+                <form method="POST" action="/users/create">
                     <div class="mb-3">
                         <label for="name" class="form-label">Имя *</label>
                         <input type="text" class="form-control <?= isset($errors['name']) ? 'is-invalid' : '' ?>" 
@@ -48,7 +48,35 @@
                             <div class="invalid-feedback"><?= $errors['department_id'] ?></div>
                         <?php endif; ?>
                     </div>
+<div class="mb-3">
+    <label for="phone" class="form-label">Телефон</label>
+    <input type="tel" class="form-control <?= isset($errors['phone']) ? 'is-invalid' : '' ?>"
+           id="phone" name="phone" value="<?= htmlspecialchars($old['phone'] ?? '') ?>"
+           placeholder="Введите номер телефона" maxlength="20">
+    <?php if (isset($errors['phone'])): ?>
+        <div class="invalid-feedback"><?= $errors['phone'] ?></div>
+    <?php endif; ?>
+</div>
 
+<div class="mb-3">
+    <label for="position" class="form-label">Должность</label>
+    <input type="text" class="form-control <?= isset($errors['position']) ? 'is-invalid' : '' ?>"
+           id="position" name="position" value="<?= htmlspecialchars($old['position'] ?? '') ?>"
+           placeholder="Введите должность" maxlength="100">
+    <?php if (isset($errors['position'])): ?>
+        <div class="invalid-feedback"><?= $errors['position'] ?></div>
+    <?php endif; ?>
+</div>
+
+<div class="mb-3">
+    <label for="address" class="form-label">Адрес</label>
+    <textarea class="form-control <?= isset($errors['address']) ? 'is-invalid' : '' ?>"
+              id="address" name="address" rows="3" maxlength="1000"
+              placeholder="Введите адрес"><?= htmlspecialchars($old['address'] ?? '') ?></textarea>
+    <?php if (isset($errors['address'])): ?>
+        <div class="invalid-feedback"><?= $errors['address'] ?></div>
+    <?php endif; ?>
+</div>
                     <div class="mb-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" 

@@ -1,17 +1,25 @@
 <?php
+session_start();
+
+// Включаем отображение ошибок для отладки (уберите в продакшене)
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 spl_autoload_register(function ($class) {
     // Преобразуем namespace в путь к файлу
     $file = __DIR__ . '/../src/' . str_replace('\\', '/', $class) . '.php';
     
+       // Отладочная информация
+    error_log("Attempting to load class: $class");
+    error_log("Looking for file: $file");
     // Проверяем существование файла и подключаем его
     if (file_exists($file)) {
         require_once $file;
+        error_log("Successfully loaded: $file");
         return true;
     }else {
     echo "Файл не найден: $file";}
-    
-    echo "<script>console.log(" . json_encode($file) . ");</script>"; ;
-    echo "<script>console.log(" . json_encode($class) . ");</script>";;
+    return false;
 });
 // Подключаем автозагрузчик
 #require_once __DIR__ . './../autoloader.php';
@@ -36,12 +44,12 @@ $router->get('/users', function() {
     $controller->index();
 });
 
-$router->get('/users/add', function() {
+$router->get('/users/create', function() {
     $controller = new UserController();
     $controller->create();
 });
 
-$router->post('/users/add', function() {
+$router->post('/users/create', function() {
     $controller = new UserController();
     $controller->store();
 });
@@ -71,16 +79,37 @@ $router->get('/departments', function() {
     $controller = new DepartmentController();
     $controller->index();
 });
-
+$router->get('/departments/create', function() {
+    $controller = new DepartmentController();
+    $controller->create();
+});
 $router->post('/departments/create', function() {
     $controller = new DepartmentController();
     $controller->store();
 });
 
+$router->get('/departments/{id}', function($id) {
+    $controller = new DepartmentController();
+    $controller->show((int)$id);
+});
+
+$router->get('/departments/{id}/edit', function($id) {
+    $controller = new DepartmentController();
+    $controller->edit((int)$id);
+});
+
+$router->post('/departments/{id}/edit', function($id) {
+    $controller = new DepartmentController();
+    $controller->update((int)$id);
+});
+
+
 $router->post('/departments/{id}/delete', function($id) {
     $controller = new DepartmentController();
-    $controller->delete($id);
+    $controller->delete((int)$id);
 });
+
+
 
 // Запускаем роутер
 $router->dispatch();

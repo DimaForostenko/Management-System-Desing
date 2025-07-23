@@ -3,6 +3,7 @@
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
             <a href="/departments/create" class="btn btn-sm btn-outline-secondary">
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
                 <i class="bi bi-plus-circle"></i> Добавить отдел
             </a>
         </div>
@@ -17,7 +18,7 @@
                     <th>ID</th>
                     <th>Название</th>
                     <th>Описание</th>
-                    <th>Количество пользователей</th>
+                    <th>Количество сотрудников</th>
                     <th>Дата создания</th>
                     <th>Дата обновления</th>
                     <th>Действия</th>
@@ -27,30 +28,49 @@
                 <?php foreach ($departments as $department): ?>
                     <tr>
                         <td><?= $department['id'] ?></td>
-                        <td><?= htmlspecialchars($department['name']) ?></td>
+                        <td>
+                            <a href="/departments/<?= $department['id'] ?>" class="text-decoration-none">
+                                <?= htmlspecialchars($department['name']) ?>
+                            </a>
+                        </td>
                         <td><?= htmlspecialchars($department['description'] ?? '-') ?></td>
                         <td>
-                            <span class="badge bg-info"><?= $department['user_count'] ?? 0 ?></span>
+                            <span class="badge bg-info">
+                                <?= (int)$department['users_count'] ?> чел.
+                            </span>
                         </td>
                         <td><?= date('d.m.Y H:i', strtotime($department['created_at'])) ?></td>
                         <td><?= date('d.m.Y H:i', strtotime($department['updated_at'])) ?></td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="/departments/<?= $department['id'] ?>" 
-                                   class="btn btn-sm btn-outline-info">
+                                <a href="/departments/<?= $department['id'] ?>"
+                                   class="btn btn-sm btn-outline-info"
+                                   title="Просмотр">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="/departments/<?= $department['id'] ?>/edit" 
-                                   class="btn btn-sm btn-outline-warning">
+                                <a href="/departments/<?= $department['id'] ?>/edit"
+                                   class="btn btn-sm btn-outline-warning"
+                                   title="Редактировать">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form method="POST" action="/departments/<?= $department['id'] ?>/delete" 
-                                      style="display: inline;" 
-                                      onsubmit="return confirm('Вы уверены, что хотите удалить этот отдел?')">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <?php if ((int)$department['users_count'] === 0): ?>
+                                    <form method="POST" action="/departments/<?= $department['id'] ?>/delete"
+                                          style="display: inline;"
+                                          onsubmit="return confirm('Вы уверены, что хотите удалить этот отдел?')">
+                                        <button type="submit" 
+                                                class="btn btn-sm btn-outline-danger"
+                                                title="Удалить">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                <?php else: ?>
+                                    <button type="button" 
+                                            class="btn btn-sm btn-outline-danger disabled"
+                                            title="Нельзя удалить отдел с сотрудниками"
+                                            disabled>
                                         <i class="bi bi-trash"></i>
                                     </button>
-                                </form>
+                                <?php endif; ?>
                             </div>
                         </td>
                     </tr>
@@ -58,9 +78,16 @@
             </tbody>
         </table>
     </div>
+    
+    <div class="mt-3">
+        <small class="text-muted">
+            Всего отделов: <?= count($departments) ?>
+        </small>
+    </div>
+    
 <?php else: ?>
     <div class="alert alert-info">
-        <i class="bi bi-info-circle"></i> Отделов пока нет. 
+        <i class="bi bi-info-circle"></i> Отделов пока нет.
         <a href="/departments/create" class="alert-link">Создайте первый отдел</a>.
     </div>
 <?php endif; ?>

@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(255) NOT NULL,
     address TEXT,
     phone VARCHAR(20),
-    comments TEXT,
+    position TEXT,
     department_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -33,7 +33,7 @@ INSERT INTO departments (name) VALUES
 ('Маркетинг'),
 ('Продажі');
 
-INSERT INTO users (email, name, address, phone, comments, department_id) VALUES
+INSERT INTO users (email, name, address, phone, position, department_id) VALUES
 ('john.doe@example.com', 'Іван Іванов', 'вул. Пушкіна, буд. 10, кв. 5', '+3 (999) 123-45-67', 'Провідний розробник', 1),
 ('jane.smith@example.com', 'Марія Петрова', 'вул. Лермонтова, буд. 15, кв. 8', '+3 (999) 234-56-78', 'HR-менеджер', 2),
 ('bob.johnson@example.com', 'Олексій Сидоров', 'вул. Гоголя, буд. 20, кв. 12', '+3 (999) 345-67-89', 'Головний бухгалтер', 3);

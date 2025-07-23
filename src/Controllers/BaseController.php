@@ -67,17 +67,21 @@ abstract class BaseController
         $viewPath = __DIR__ . '/../../views/' . $view . '.php';
         
         if (file_exists($viewPath)) {
+            echo "<script>console.log(" . json_encode($viewPath) . ");</script>",
             require $viewPath;
         } else {
             throw new \Exception("View {$view} not found at path: {$viewPath}");
         }
     }
 
+    
     protected function redirect(string $url): void
     {
-        header("Location: {$url}");
-        exit;
+    $url = '/' . ltrim($url, '/'); // Ensure the URL starts with a slash
+    header("Location: {$url}");
+    exit;
     }
+    
 
     protected function redirectWithMessage(string $url, string $message, string $type = 'success'): void
     {

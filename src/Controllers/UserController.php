@@ -16,36 +16,46 @@ class UserController extends BaseController
         $this->departmentModel = new Department();
     }
 
-    public function index(): void
-    {
-        $users = $this->userModel->getAllWithDepartments();
-        
-        $data = [
-            'title' => 'Все пользователи',
-            'users' => $users,
-            'flashMessage' => $this->getFlashMessage()
-        ];
-        
-        $this->view('users/index', $data);
-    }
+  public function index(): void
+{      
+    // Получаем параметры фильтрации из GET
+    $search = $_GET['search'] ?? '';
+    $department = $_GET['department'] ?? '';
+    $status = $_GET['status'] ?? '';
+    $sort = $_GET['sort'] ?? 'created_at_desc';
+    
+    // Получаем список всех отделов для фильтра
+    $departments = $this->departmentModel->getAllForSelect();
 
-    public function show(int $id): void
-    {
-        $user = $this->userModel->getWithDepartment($id);
-        
-        if (!$user) {
-            $this->redirectWithMessage('/users', 'Пользователь не найден', 'error');
-            return;
-        }
-        
-        $data = [
-            'title' => 'Информация о пользователе',
-            'user' => $user,
-            'flashMessage' => $this->getFlashMessage()
-        ];
-        
-        $this->view('users/show', $data);
+    // Получаем пользователей с учетом фильтров
+    if (!empty($search) || !empty($department) || $status !== '') {
+        // Есть фильтры - используем фильтрованный поиск
+        $users = $this->userModel->getFiltered($search, $department, $status, $sort);
+        error_log("Filtered search - Search: '$search', Department: '$department', Status: '$status', Sort: '$sort'");
+    } else {
+        // Нет фильтров - показываем всех пользователей
+        $users = $this->userModel->getAllWithDepartments();
+        error_log("No filters - showing all users");
     }
+    
+    // Отладка
+    error_log("Departments loaded: " . count($departments));
+    error_log("Users loaded: " . count($users));
+
+    // УБИРАЕМ ЭТУ СТРОКУ - она перезаписывает отфильтрованные данные!
+    // $users = $this->userModel->getAllWithDepartments();
+    
+    $data = [
+        'title' => 'Все пользователи',
+        'users' => $users,
+        'departments' => $departments,
+        'flashMessage' => $this->getFlashMessage()
+    ];
+    
+    $this->view('users/index', $data);
+}
+
+
 
     public function create(): void
     {
@@ -65,7 +75,7 @@ class UserController extends BaseController
     public function store(): void
     {
         if (!$this->isPost()) {
-            $this->redirect('/users/add');
+            $this->redirect('/users/create');
             return;
         }
 
@@ -77,16 +87,34 @@ class UserController extends BaseController
         if (empty($errors)) {
             try {
                 $userId = $this->userModel->create($postData);
-                $this->redirectWithMessage('/users', 'Пользователь успешно создан', 'success');
+                $this->redirectWithMessage('/users/index', 'Пользователь успешно создан', 'success');
             } catch (\Exception $e) {
-                $this->redirectWithMessage('/users/add', 'Ошибка при создании пользователя: ' . $e->getMessage(), 'error');
+                $this->redirectWithMessage('/users/create', 'Ошибка при создании пользователя: ' . $e->getMessage(), 'error');
             }
         } else {
             // Сохраняем ошибки в сессию для отображения
             $_SESSION['validation_errors'] = $errors;
             $_SESSION['old_input'] = $postData;
-            $this->redirect('/users/add');
+            $this->redirect('/users/create');
         }
+    }
+
+    public function show(int $id): void
+    {
+        $user = $this->userModel->getWithDepartment($id);
+        
+        if (!$user) {
+            $this->redirectWithMessage('/users', 'Пользователь не найден', 'error');
+            return;
+        }
+        
+        $data = [
+            'title' => 'Информация о пользователе',
+            'user' => $user,
+            'flashMessage' => $this->getFlashMessage()
+        ];
+        
+        $this->view('users/show', $data);
     }
 
     public function edit(int $id): void

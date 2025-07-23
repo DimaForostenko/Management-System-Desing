@@ -84,7 +84,7 @@
                         <?php foreach ($recentUsers as $user): ?>
                             <div class="list-group-item d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h6 class="mb-1"><?php echo htmlspecialchars($user['first_name'] . ' ' . $user['last_name']); ?></h6>
+                                    <h6 class="mb-1"><?php echo htmlspecialchars($user['name'] ); ?></h6>
                                     <small class="text-muted"><?php echo htmlspecialchars($user['position'] ?? ''); ?></small>
                                 </div>
                                 <small class="text-muted"><?php echo date('d.m.Y', strtotime($user['created_at'])); ?></small>

@@ -13,7 +13,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="/departments">
+                <form method="POST" action="/departments/create">
                     <div class="mb-3">
                         <label for="name" class="form-label">Название отдела *</label>
                         <input type="text" class="form-control <?= isset($errors['name']) ? 'is-invalid' : '' ?>" 

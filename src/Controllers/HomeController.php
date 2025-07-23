@@ -16,6 +16,7 @@ class HomeController extends BaseController
         $totalUsers = count($userModel->all());
         $totalDepartments = count($departmentModel->all());
         $recentUsers = array_slice($userModel->getAllWithDepartments(), 0, 5);
+        $recentDepartments = array_slice($departmentModel->getWithUsersCount(), 0, 5);
         $departmentsWithCounts = $departmentModel->getWithUsersCount();
         
         // Подготавливаем данные для передачи в представление
@@ -24,6 +25,7 @@ class HomeController extends BaseController
             'totalUsers' => $totalUsers,
             'totalDepartments' => $totalDepartments,
             'recentUsers' => $recentUsers,
+            'recentDepartments'=>$recentDepartments ,
             'departmentsWithCounts' => $departmentsWithCounts,
             'flashMessage' => $this->getFlashMessage()
         ];

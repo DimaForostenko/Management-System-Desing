@@ -49,6 +49,7 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Пользователи отдела</h5>
+                 <span class="badge bg-info"><?= $usersCount ?> чел.</span>
             </div>
             <div class="card-body">
                 <?php if (!empty($users)): ?>
@@ -67,15 +68,22 @@
                                     <tr>
                                         <td><?= htmlspecialchars($user['name']) ?></td>
                                         <td><?= htmlspecialchars($user['email']) ?></td>
+                                        <td><?= htmlspecialchars($user['position'] ?? 'Не указана') ?></td>
                                         <td>
                                             <span class="badge <?= $user['is_active'] ? 'bg-success' : 'bg-danger' ?>">
                                                 <?= $user['is_active'] ? 'Активный' : 'Неактивный' ?>
                                             </span>
                                         </td>
-                                        <td>
+                                   <td>
                                             <a href="/users/<?= $user['id'] ?>" 
-                                               class="btn btn-sm btn-outline-info">
+                                               class="btn btn-sm btn-outline-info"
+                                               title="Просмотр">
                                                 <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a href="/users/<?= $user['id'] ?>/edit" 
+                                               class="btn btn-sm btn-outline-warning"
+                                               title="Редактировать">
+                                                <i class="bi bi-pencil"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -84,7 +92,13 @@
                         </table>
                     </div>
                 <?php else: ?>
-                    <p class="text-muted">В этом отделе пока нет пользователей.</p>
+                        <div class="text-center py-4">
+                        <i class="bi bi-people display-4 text-muted"></i>
+                        <p class="text-muted mt-2">В этом отделе пока нет пользователей.</p>
+                        <a href="/users/add" class="btn btn-primary btn-sm">
+                            <i class="bi bi-plus"></i> Добавить пользователя
+                        </a>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
