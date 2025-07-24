@@ -3,8 +3,7 @@
     "description": "managment",
     "type": "project",
     "require": {
-        "php": "^8.5",
-        "phpunit/phpunit": "^10.5"
+        "php": "8.3.23"
     },
     "autoload": {
        "psr-4": {
@@ -12,6 +11,11 @@
         "Routers\\": "src/Routers/",
         "Controllers\\": "src/Controllers/",
         "Models\\": "src/Models/"
+    }
+    },
+    "autoload-dev": {
+    "psr-4": {
+        "Tests\\": "tests/"
     }
     },
     "authors": [
@@ -23,5 +27,10 @@
         "optimize-autoloader": true,
         "sort-packages": true
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "fakerphp/faker": "^1.20",
+        "mockery/mockery": "^1.5",
+        "phpunit/phpunit": "^12.2"
+    }
 }
